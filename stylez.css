@@ -1,0 +1,23 @@
+table,th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+}
+.vertical-menu{
+    width: 200px;
+    height: 80px;
+    overflow-y: auto;
+}
+.vertical-menu a{
+    background-color: lightgray;
+    color: black;
+    display: block;
+    text-decoration: none;
+}
+.vertical-menu a:hover{
+    background-color: lime;
+}
+td{
+    border: 1px dashed black;
+    padding: 10px;
+}

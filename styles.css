@@ -1,0 +1,18 @@
+table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.vertical-menu{
+    width: 200px;
+    height: 80px;
+    overflow-y: auto;
+}
+.vertical-menu a{
+    background-color: lightgray;
+    color: black;
+    display: block;
+    text-decoration: none;
+}
+.vertical-menu a:hover{
+    background-color: lime;
+}
