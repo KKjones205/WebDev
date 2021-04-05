@@ -38,7 +38,7 @@ $statement->execute();
         $statement->bindValue(':role', $role);
         $statement->execute();
 
-        header("Location: index.php");
+        header("Location: login.php");
         exit();
     }
 ?>

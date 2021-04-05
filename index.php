@@ -44,9 +44,11 @@
   <a href="pokemon.php">View Pokemon</a>
   <a href="trainer.php">View Trainers</a>
   <a href="gymleader.php">View Gym Leaders </a>
+  <?php if (isset($_SESSION['user']) && $_SESSION['role'] == 2): ?>
   <a href="createPokemon.php">New Pokemon</a>
   <a href="createTrainer.php">New Trainer</a>
   <a href="createGymLeader.php">New GymLeader</a>
+  <?php endif ?>
 </div> 
 
 <div id="pokemon">
@@ -61,7 +63,9 @@
           <th>Defense</th>
           <th>Special Attack</th>
           <th>Special Defense</th>
+          <?php if (isset($_SESSION['user']) && $_SESSION['role'] == 2): ?>
           <th>Edit</th>
+          <?php endif ?>
           <th>Details</th>
         </tr>
   <?php while($row = $statement->fetch()): ?>
@@ -75,7 +79,9 @@
         <td><?= $row['Defense'] ?></td>
         <td><?= $row['SpAttack'] ?></td>
         <td><?= $row['SpDefense'] ?></td>
+        <?php if (isset($_SESSION['user']) && $_SESSION['role'] == 2): ?>
         <td><a href="<?="edit.php?id={$row['ID']}"?>">edit</a></td>
+        <?php endif ?>
         <td><a href="<?="detail.php?id={$row['ID']}"?>">Details</a></td>
        </tr>
   </div>
@@ -88,7 +94,9 @@
         <th>Type</th>
         <th>Number of Pokemon</th>
         <th>Max Level</th>
+        <?php if (isset($_SESSION['user']) && $_SESSION['role'] == 2): ?>
         <th>Edit</th>
+        <?php endif ?>
         <th>Details</th>
       </tr>
     <?php while($rows = $statement1->fetch()): ?>
@@ -97,7 +105,9 @@
         <td><?= $rows['Type'] ?></td>
         <td><?= $rows['NumOfPokemon'] ?></td>
         <td><?= $rows['MaxLevel'] ?></td>
+        <?php if (isset($_SESSION['user']) && $_SESSION['role'] == 2): ?>
         <td><a href="<?="editGymLeader.php?id={$rows['ID']}"?>">edit</a></td>
+        <?php endif ?>
         <td><a href="<?="detailGymLeader.php?id={$rows['ID']}"?>">Details</a></td>
 
       </tr>
@@ -110,7 +120,9 @@
         <th>Name</th>
         <th>Type</th>
         <th>Location</th>
+        <?php if (isset($_SESSION['user']) && $_SESSION['role'] == 2): ?>
         <th>Edit</th>
+        <?php endif ?>
         <th>Details</th>
       </tr>
     <?php while($rowed = $statement2->fetch()): ?>
@@ -119,7 +131,9 @@
         <td><?= $rowed['Name'] ?></td>
         <td><?= $rowed['Type'] ?></td>
         <td><?= $rowed['Location'] ?></td>
+        <?php if (isset($_SESSION['user']) && $_SESSION['role'] == 2): ?>
         <td><a href="<?="editTrainer.php?id={$rowed['ID']}"?>">edit</a></td>
+        <?php endif ?>
         <td><a href="<?="detailTrainer.php?id={$rowed['ID']}"?>">Details</a></td>
       </tr>
     <?php endwhile?>

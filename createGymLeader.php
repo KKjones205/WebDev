@@ -2,11 +2,20 @@
     //Kyle Yallits Create Page
     //Requires authentication, allows the user to create a new page
     //Makes sure the data is proper before posting it
-
-    require('authenticate.php');
-
+  
+    session_start();
     require('connect.php');
     date_default_timezone_set("America/Chicago");
+
+    if(isset($_SESSION['user']))
+    {
+      if($_SESSION['role'] == 1)
+      {
+        header("Location: error.php");
+      }
+    }else{
+      header("Location: error.php");
+    }
 
     if($_POST)
     {

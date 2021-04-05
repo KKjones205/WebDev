@@ -4,7 +4,16 @@
   //It then allows them to edit it
   //It then posts the data to post process script to actually post the edit or delete
   require('connect.php');
-  require('authenticate.php');
+  session_start();
+  if(isset($_SESSION['user']))
+  {
+    if($_SESSION['role'] == 1)
+    {
+      header("Location: error.php");
+    }
+  }else{
+    header("Location: error.php");
+  }
 
   if(isset($_GET['id']))
   {

@@ -1,6 +1,16 @@
 <?php
 
     require("connect.php");
+    session_start();
+    if(isset($_SESSION['user']))
+    {
+      if($_SESSION['role'] == 1)
+      {
+        header("Location: error.php");
+      }
+    }else{
+      header("Location: error.php");
+    }
 
     if(isset($_GET['id']))
     {
