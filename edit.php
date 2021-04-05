@@ -57,7 +57,7 @@
       </div> 
 
 <div id="all_blogs">
-  <form action="post_process.php" method="post">
+  <form action="post_process.php" method="post" enctype="multipart/form-data">
     <fieldset>
       <legend>Edit</legend>
       <p>
@@ -91,6 +91,14 @@
       <p>
         <label for="SpDefense">SpDefense</label>
         <input type="number" name="SpDefense" id="SpDefense" value="<?= $pokemon['SpDefense'] ?>">
+      </p>
+      <p>
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image" value="<?= $pokemon['Image'] ?>"></br>
+          <?php if($pokemon['Image'] != ""): ?>
+            <input type="checkbox" name="image_delete" id="image_delete" value="delete">
+            <label for="image_delete"> Delete Image </label>
+          <?php endif ?>
       </p>
       <p>
         <input type="hidden" name="id" value="<?= $pokemon['ID'] ?>" />

@@ -49,6 +49,9 @@
           <th>Defense</th>
           <th>Special Attack</th>
           <th>Special Defense</th>
+          <?php if($pokemon['Image'] != ""): ?>
+          <th>Image</th>
+          <?php endif ?>
           <th>Edit</th>
         </tr>
        <tr>
@@ -60,6 +63,9 @@
         <td><?= $pokemon['Defense'] ?></td>
         <td><?= $pokemon['SpAttack'] ?></td>
         <td><?= $pokemon['SpDefense'] ?></td>
+        <?php if($pokemon['Image'] != ""): ?>
+        <td><img src="images/<?=$pokemon["Image"]?>" alt="<?=$pokemon["Name"]?>"></td>
+        <?php endif ?>
         <td><a href="<?="edit.php?id={$pokemon['ID']}"?>">edit</a></td>
        </tr>
       </table>
