@@ -14,11 +14,10 @@
     $statement->execute();
     $pokemon = $statement->fetch();
 
-    $comment = "SELECT * FROM comments WHERE ID = :ID";
+    $comment = "SELECT * FROM comments WHERE pokemonID = :ID";
     $commentstate = $db->prepare($comment);
     $commentstate->bindValue(':ID', $id);
     $commentstate->execute();
-    $comments = $commentstate->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,12 +75,19 @@
         <td><a href="<?="edit.php?id={$pokemon['ID']}"?>">edit</a></td>
        </tr>
       </table>
+      <p>
       <?php if (isset($_SESSION['user'])): ?>
         <a href="createComment.php?pokemon=<?=$pokemon["ID"]?>"> Add Comment </a>
       <?php endif ?>
-      <?php if (!($commentstate->rowCount() ==0)): ?>
+      </p>
+      <p>
+      <?php if (!($commentstate->rowCount() == 0)): ?>
+          <?php while ($comments = $commentstate->fetch()):?>
+            <h2>Comment by <?= $comments["author"]?></h2>
             <?= $comments["comment"]?>
+          <?php endwhile ?>
       <?php endif ?>
+      </p>
   </div>
   </div>
         <div id="footer">
