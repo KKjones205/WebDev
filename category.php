@@ -5,16 +5,22 @@
    require("connect.php");
    session_start();
 
-  $query = "SELECT * FROM pokemon ORDER BY ID ASC LIMIT 6";
+    $type = filter_input(INPUT_GET,"type", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+  $query = "SELECT * FROM pokemon WHERE Type1 = :Type1 OR Type2 = :Type2";
   $statement = $db->prepare($query);
+  $statement->bindValue(':Type1', $type);
+  $statement->bindValue(':Type2', $type);
   $statement->execute();
 
-  $query1 = "SELECT * FROM gymleader ORDER BY ID ASC LIMIT 6";
+  $query1 = "SELECT * FROM gymleader WHERE Type = :Type";
   $statement1 = $db->prepare($query1);
+  $statement1->bindValue(':Type', $type);
   $statement1->execute();
 
-  $query2 = "SELECT * FROM trainer ORDER BY ID ASC LIMIT 6";
+  $query2 = "SELECT * FROM trainer WHERE Type = :Type";
   $statement2 = $db->prepare($query2);
+  $statement2->bindValue(':Type', $type);
   $statement2->execute();
 ?>
 
@@ -50,11 +56,10 @@
   <a href="createGymLeader.php">New GymLeader</a>
   <?php endif ?>
 </div> 
-<h3>See Pokemon and Trainers by Type</h3>
-<p><a href="category.php?type=Fire">Fire</a> , <a href="category.php?type=Fighting">Fighting</a>, <a href="category.php?type=Ghost">Ghost</a>, <a href="category.php?type=Flying">Flying</a></p>
 
 <div id="pokemon">
 <h2>List of Pokemon</h2>
+<?php if(!($statement->rowCount()==0)): ?>
 <table>
         <tr>
           <th>Name</th>
@@ -89,7 +94,10 @@
   </div>
   <?php endwhile ?>
 </table>
+<?php endif ?>
+
   <h2>List of Gym Leaders</h2>
+  <?php if(!($statement1->rowCount()==0)): ?>
   <table>
       <tr>
         <th>Name</th>
@@ -115,8 +123,9 @@
       </tr>
     <?php endwhile?>
   </table>
-    
+<?php endif ?>
     <h2>List of Trainers</h2>
+    <?php if(!($statement2->rowCount()==0)): ?>
     <table>
       <tr>
         <th>Name</th>
@@ -140,6 +149,8 @@
       </tr>
     <?php endwhile?>
     </table>
+<?php endif ?>
+
   </div>
         <div id="footer">
             Copywrong 2021 - No Rights Reserved

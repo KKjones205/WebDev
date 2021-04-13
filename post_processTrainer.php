@@ -4,7 +4,7 @@
 //This checks to see if the data that was edited is valid and updates the database
 //If validation fails an error page tells redirecting them back to the main page comes up
 require("connect.php");
-require('authenticate.php');
+
 $queryUpdate = "UPDATE trainer SET Name = :Name, Type = :Type, Location = :Location WHERE ID = :ID";
 $queryDelete = "DELETE FROM trainer WHERE id= :id";
 
