@@ -3,6 +3,7 @@
   //Comes up when someone clicks read more or the title of a blog post
   //Allows the user to read the full post
     require('connect.php');
+    session_start();
 
     $id = filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
     $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -12,6 +13,12 @@
     $statement->bindValue(':id',$id);
     $statement->execute();
     $pokemon = $statement->fetch();
+
+    $comment = "SELECT * FROM comments WHERE ID = :ID";
+    $commentstate = $db->prepare($comment);
+    $commentstate->bindValue(':ID', $id);
+    $commentstate->execute();
+    $comments = $commentstate->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,6 +76,12 @@
         <td><a href="<?="edit.php?id={$pokemon['ID']}"?>">edit</a></td>
        </tr>
       </table>
+      <?php if (isset($_SESSION['user'])): ?>
+        <a href="createComment.php?pokemon=<?=$pokemon["ID"]?>"> Add Comment </a>
+      <?php endif ?>
+      <?php if (!($commentstate->rowCount() ==0)): ?>
+            <?= $comments["comment"]?>
+      <?php endif ?>
   </div>
   </div>
         <div id="footer">
