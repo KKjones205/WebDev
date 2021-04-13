@@ -29,13 +29,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>New Pokemon</title>
+    <title>New Comment</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
 </head>
 <body>
     <div id="wrapper">
         <div id="header">
-            <h1><a href="index.php">Pokemon CMS - New Gym Leader</a></h1>
+            <h1><a href="index.php">Pokemon CMS - New Comment</a></h1>
         </div> <!-- END div id="header" -->
 
     <div class="vertical-menu">
