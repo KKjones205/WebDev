@@ -5,23 +5,17 @@
    require("connect.php");
    session_start();
 
-   $sort = filter_input(INPUT_GET, "sort", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-   $sort2 = filter_input(INPUT_GET, "sort", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+   $search = filter_input(INPUT_POST, "search", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-   if($sort == "Type")
-   {
-       $sort2 = "Type1";
-   }
-
-  $query = "SELECT * FROM pokemon ORDER BY " . $sort2 . " ";
+  $query = "SELECT * FROM pokemon WHERE Name LIKE '%" . $search . "%' OR Type1 LIKE '%" . $search . "%' OR Type2 LIKE '%" . $search . "%'";
   $statement = $db->prepare($query);
   $statement->execute();
 
-  $query1 = "SELECT * FROM gymleader ORDER BY "  . $sort . " ";
+  $query1 = "SELECT * FROM gymleader WHERE Name LIKE '%" . $search . "%' OR Type LIKE '%" . $search . "%'" ;
   $statement1 = $db->prepare($query1);
   $statement1->execute();
 
-  $query2 = "SELECT * FROM trainer ORDER BY " . $sort . " ";
+  $query2 = "SELECT * FROM trainer WHERE Name LIKE '%" . $search . "%' OR Type LIKE '%" . $search . "%'";
   $statement2 = $db->prepare($query2);
   $statement2->execute();
 ?>
@@ -73,15 +67,10 @@
 <h3>See Pokemon and Trainers by Type</h3>
 <p><a href="category.php?type=Fire">Fire</a> , <a href="category.php?type=Fighting">Fighting</a>, <a href="category.php?type=Ghost">Ghost</a>, <a href="category.php?type=Flying">Flying</a></p>
 <?php if (isset($_SESSION['user'])): ?>
-    <h3>Sort the Data</h3>
-    <p><a href="sort.php?sort=Name">Name</a> , <a href="sort.php?sort=ID">ID</a> , <a href="sort.php?sort=Type">Type</a>, <a href="sort.php?sort=ID DESC">Recently Added</a></p>
-<?php endif ?>
+  <h3>Sort the Data</h3>
+  <p><a href="sort.php?sort=Name">Name</a> , <a href="sort.php?sort=ID">ID</a> , <a href="sort.php?sort=Type">Type</a>, <a href="sort.php?sort=ID DESC">Recently Added</a></p>
+<?php endif?>
 <div id="pokemon">
-<?php if($sort == "ID DESC"): ?>
-    <h2>Sorting by Recently Created</h2>
-<?php else: ?>
-    <h2>Sorting by <?= $sort ?></h2>
-<?php endif ?>
 <h2>List of Pokemon</h2>
 <table>
         <tr>

@@ -30,6 +30,18 @@
         <div id="header">
             <h1><a href="index.php">Pokemon CMS</a></h1>
         </div> <!-- END div id="header" -->
+    <form action="search.php" method="post">
+      <fieldset>
+          <legend>Search</legend>
+          <p>
+            <label for="search">Search</label>
+            <input name="search" id = "search" />
+          </p>
+          <p>
+            <input type="submit" name="command" value="Create" />
+          </p>
+      </fieldset>
+    </form>
   <h3><a href="signup.php">Sign Up</a></h3>
   <h3><a href="login.php">login</a></h3>
     <?php if (isset($_SESSION['user'])): ?>
