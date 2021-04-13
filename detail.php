@@ -14,7 +14,7 @@
     $statement->execute();
     $pokemon = $statement->fetch();
 
-    $comment = "SELECT * FROM comments WHERE pokemonID = :ID";
+    $comment = "SELECT * FROM comments WHERE pokemonID = :ID ORDER BY ID DESC";
     $commentstate = $db->prepare($comment);
     $commentstate->bindValue(':ID', $id);
     $commentstate->execute();
@@ -85,6 +85,9 @@
           <?php while ($comments = $commentstate->fetch()):?>
             <h2>Comment by <?= $comments["author"]?></h2>
             <?= $comments["comment"]?>
+                <?php if(isset($_SESSION['user']) && $_SESSION['role'] == 2): ?>
+                  <a href="<?="editComment.php?id={$comments['ID']}"?>">edit</a>
+                <?php endif ?>
           <?php endwhile ?>
       <?php endif ?>
       </p>
