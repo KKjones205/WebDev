@@ -20,6 +20,7 @@
     if($_POST && !empty($_POST['name']) && !empty($_POST['type']) && !empty($_POST['numofpokemon'])&& !empty($_POST['maxlevel']))
     {
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $numofpokemon = filter_input(INPUT_POST, 'numofpokemon', FILTER_SANITIZE_NUMBER_INT);

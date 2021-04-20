@@ -11,6 +11,7 @@
     if($_POST && !empty($_POST['comment']))
     {
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
         $comment = filter_input(INPUT_POST,'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $pokemon = filter_input(INPUT_POST, 'pokemon', FILTER_VALIDATE_INT);
         $author = $_SESSION['user'];
