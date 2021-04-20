@@ -68,7 +68,7 @@ elseif(!empty($_POST['name']) && !empty($_POST['type1']) && !empty($_POST['HP'])
       $statement->bindValue(':id', $id);
       $statement->execute();
       $row = $statement->fetch();
-      unlink("img\\" .$row["Image"]);
+      unlink("images\\" .$row["Image"]);
       $imageName = '';
   }
 

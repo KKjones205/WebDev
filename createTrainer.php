@@ -18,7 +18,7 @@
       header("Location: error.php");
     }
 
-    if($_POST)
+    if($_POST && !empty($_POST['type']) && !empty($_POST['name']) && !empty($_POST['location']))
     {
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);

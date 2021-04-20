@@ -7,7 +7,7 @@
     require('connect.php');
 
 
-    if($_POST)
+    if($_POST && !empty($_POST['comment']))
     {
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         $comment = filter_input(INPUT_POST,'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
