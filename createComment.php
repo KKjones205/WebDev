@@ -6,6 +6,7 @@
     session_start();
     require('connect.php');
 
+    $pokID = filter_input(INPUT_GET, 'pokemon', FILTER_VALIDATE_INT);
 
     if($_POST && !empty($_POST['comment']))
     {
@@ -57,7 +58,7 @@
         <textarea name="comment" id="comment" ></textarea>
       </p>
       <p>
-        <input type="hidden" name="pokemon" value="<?= $_GET['pokemon'] ?>" />
+        <input type="hidden" name="pokemon" value="<?= $pokID ?>" />
         <input type="submit" name="command" value="Create" />
       </p>
       <?php if($_POST): ?>

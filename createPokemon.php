@@ -59,7 +59,7 @@
       }
     }
 
-    if($_POST && !empty($_POST['type1']) && !empty($_POST['name'])&& !empty($_POST['hp']) && !empty($_POST['attack']) && !empty($_POST['Defense']) && !empty($_POST['SpAttack']) && !empty($_POST['SpDefense']))
+    if($_POST && !empty($_POST['type1']) && !empty($_POST['name'])&& !empty($_POST['HP']) && !empty($_POST['attack']) && !empty($_POST['Defense']) && !empty($_POST['SpAttack']) && !empty($_POST['SpDefense']))
     {
 
         if (isset($_FILES['image']) && ($_FILES['image']['error'] === 0)) { 
